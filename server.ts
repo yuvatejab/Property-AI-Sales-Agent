@@ -10,36 +10,22 @@ dotenv.config();
 
 const PORT = 3000;
 
-<<<<<<< HEAD
 // High-performing free and paid models on OpenRouter (Prioritized primary engine)
-=======
-// High-performing free models on OpenRouter
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
 const OPENROUTER_MODELS = [
   'meta-llama/llama-3.3-70b-instruct:free',
   'qwen/qwen-2.5-72b-instruct:free',
   'mistralai/mistral-small-24b-instruct-2501:free',
   'meta-llama/llama-3.1-8b-instruct:free',
-<<<<<<< HEAD
   'google/gemma-2-9b-it:free',
 ];
 
 // Gemini models for secondary fast fallback
 const GEMINI_MODELS = [
-=======
-  'deepseek/deepseek-chat:free',
-];
-
-// Gemini models for instant, conversational turns
-const GEMINI_MODELS = [
-  'gemini-2.5-flash',
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
   'gemini-3.7-flash',
   'gemini-flash-latest',
   'gemini-3.1-flash-lite',
 ];
 
-<<<<<<< HEAD
 // Shared Gemini AI Client instance
 let geminiClient: GoogleGenAI | null = null;
 
@@ -61,8 +47,6 @@ function getGeminiClient(): GoogleGenAI {
   return geminiClient;
 }
 
-=======
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
 /**
  * Calls OpenRouter API with automated model fallback
  */
@@ -85,7 +69,6 @@ async function callOpenRouter(
     headers['Authorization'] = `Bearer ${apiKey}`;
   }
 
-<<<<<<< HEAD
   // If user has a paid OpenRouter key, prepend standard non-free models
   const modelList = apiKey 
     ? ['deepseek/deepseek-chat', 'meta-llama/llama-3.3-70b-instruct', ...OPENROUTER_MODELS]
@@ -94,11 +77,6 @@ async function callOpenRouter(
   let lastError: any = null;
 
   for (const model of modelList) {
-=======
-  let lastError: any = null;
-
-  for (const model of OPENROUTER_MODELS) {
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
     try {
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
@@ -106,11 +84,7 @@ async function callOpenRouter(
         body: JSON.stringify({
           model,
           messages,
-<<<<<<< HEAD
           temperature: options?.temperature ?? 0.7,
-=======
-          temperature: options?.temperature ?? 0.8,
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
           max_tokens: options?.max_tokens ?? 1024,
           ...(options?.response_format ? { response_format: options.response_format } : {}),
         }),
@@ -135,29 +109,14 @@ async function callOpenRouter(
 }
 
 /**
-<<<<<<< HEAD
  * Calls Gemini API with fast responses and multi-model fallback
-=======
- * Calls Gemini API with zero thinking delay for fast, dynamic conversation
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
  */
 async function callGemini(
   messages: Array<{ role: string; content: string }>,
   systemInstruction?: string,
   options?: { temperature?: number; max_tokens?: number; responseMimeType?: string }
 ): Promise<string> {
-<<<<<<< HEAD
   const ai = getGeminiClient();
-=======
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error('GEMINI_API_KEY not configured.');
-  }
-
-  const ai = new GoogleGenAI({
-    apiKey,
-  });
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
 
   const nonSystemMsgs = messages.filter((m) => m.role !== 'system');
   const contents: Array<{ role: string; parts: Array<{ text: string }> }> = [];
@@ -178,44 +137,25 @@ async function callGemini(
   for (const model of GEMINI_MODELS) {
     try {
       const config: any = {
-<<<<<<< HEAD
         temperature: options?.temperature ?? 0.7,
-=======
-        temperature: options?.temperature ?? 0.8,
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
         maxOutputTokens: options?.max_tokens ?? 1024,
       };
       if (systemInstruction) config.systemInstruction = systemInstruction;
       if (options?.responseMimeType) config.responseMimeType = options.responseMimeType;
 
-<<<<<<< HEAD
       const resp = await ai.models.generateContent({
         model,
         contents: contents.length > 0 ? contents : [{ role: 'user', parts: [{ text: 'Hello' }] }],
-=======
-      if (model.includes('3.7') || model.includes('thinking')) {
-        config.thinkingConfig = { thinkingBudget: 0 };
-      }
-
-      const resp = await ai.models.generateContent({
-        model,
-        contents,
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
         config,
       });
 
       if (resp && resp.text && resp.text.trim().length > 0) {
         return resp.text.trim();
       }
-<<<<<<< HEAD
     } catch (err: any) {
       lastError = err;
       // If temporary 503 service unavailable, continue to next model in list
       console.warn(`Gemini model ${model} temporarily unavailable:`, err?.message || err);
-=======
-    } catch (err) {
-      lastError = err;
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
     }
   }
 
@@ -254,7 +194,6 @@ async function generateAgentTurn(
     { role: 'user', content: userMessage.trim() },
   ];
 
-<<<<<<< HEAD
   // 1. Try OpenRouter as the PRIMARY models for smart, natural human-like responses
   try {
     const reply = await callOpenRouter(fullMessages, { temperature: 0.75, max_tokens: 1024 });
@@ -269,37 +208,14 @@ async function generateAgentTurn(
   if (process.env.GEMINI_API_KEY) {
     try {
       const reply = await callGemini(fullMessages, systemText, { temperature: 0.7, max_tokens: 1024 });
-=======
-  // 1. Try Gemini (Primary, low-latency, contextual)
-  if (process.env.GEMINI_API_KEY) {
-    try {
-      const reply = await callGemini(fullMessages, systemText, { temperature: 0.8, max_tokens: 1024 });
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
       if (reply && reply.length > 5) {
         return reply.replace(/\*\*/g, '').replace(/[*_#`~]/g, '').trim();
       }
     } catch (geminiErr: any) {
-<<<<<<< HEAD
       console.warn('Gemini fallback deferred:', geminiErr?.message);
     }
   }
 
-=======
-      console.warn('Gemini tier deferred:', geminiErr?.message);
-    }
-  }
-
-  // 2. Try OpenRouter (Multi-model reasoning fallback)
-  try {
-    const reply = await callOpenRouter(fullMessages, { temperature: 0.8, max_tokens: 1024 });
-    if (reply && reply.length > 5) {
-      return reply.replace(/\*\*/g, '').replace(/[*_#`~]/g, '').trim();
-    }
-  } catch (openRouterErr: any) {
-    console.warn('OpenRouter tier deferred:', openRouterErr?.message);
-  }
-
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
   // 3. Fallback Polyglot Generator with Contextual Nuances
   const lower = (userMessage || '').toLowerCase();
   const isHindi = lower.includes('namaste') || lower.includes('kya') || lower.includes('hai') || lower.includes('baare') || lower.includes('rehne') || lower.includes('batao');
@@ -350,11 +266,7 @@ async function startServer() {
       agent: 'Priya (Senior Relationship Associate)',
       project: PROJECT_DETAILS.name,
       location: PROJECT_DETAILS.location,
-<<<<<<< HEAD
       llm_engine: 'OpenRouter Primary (Llama 3.3 70B / Qwen 2.5 72B / DeepSeek) + Gemini Fallback',
-=======
-      llm_engine: 'Gemini + OpenRouter Multi-Model Dynamic Engine',
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
       tts_engine: 'Microsoft Neural Voice (en-IN-NeerjaNeural / hi-IN-SwaraNeural)',
       gemini_configured: Boolean(process.env.GEMINI_API_KEY),
       openrouter_configured: Boolean(process.env.OPENROUTER_API_KEY)
@@ -534,7 +446,6 @@ Return strict JSON matching this schema:
 
       let analytics: any = null;
 
-<<<<<<< HEAD
       // 1. Try OpenRouter JSON mode (Primary)
       try {
         const raw = await callOpenRouter(
@@ -551,10 +462,6 @@ Return strict JSON matching this schema:
 
       // 2. Try Gemini JSON mode (Fallback)
       if (!analytics && process.env.GEMINI_API_KEY) {
-=======
-      // 1. Try Gemini JSON mode
-      if (process.env.GEMINI_API_KEY) {
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
         try {
           const raw = await callGemini(
             [{ role: 'user', content: extractionPrompt }],
@@ -567,7 +474,6 @@ Return strict JSON matching this schema:
         }
       }
 
-<<<<<<< HEAD
       // 3. Fallback heuristic extraction if both AI models deferred
       if (!analytics) {
         const lower = transcript.toLowerCase();
@@ -598,50 +504,6 @@ Return strict JSON matching this schema:
           conversation_summary: 'Customer interacted with Priya regarding Northstar One specifications, configurations, and pricing.',
           voice_suitability_score: 97
         };
-=======
-      // 2. Try OpenRouter JSON mode
-      if (!analytics) {
-        try {
-          const raw = await callOpenRouter(
-            [
-              { role: 'system', content: 'You are a CRM sales data extraction analyst. Output ONLY valid JSON.' },
-              { role: 'user', content: extractionPrompt }
-            ],
-            { temperature: 0.1, response_format: { type: 'json_object' } }
-          );
-          analytics = JSON.parse(raw);
-        } catch (err) {
-          // Fallback heuristic extraction
-          const lower = transcript.toLowerCase();
-          const has2BHK = lower.includes('2 bhk') || lower.includes('2bhk');
-          const has3BHK = lower.includes('3 bhk') || lower.includes('3bhk');
-          const hasVisit = lower.includes('visit') || lower.includes('saturday') || lower.includes('sunday') || lower.includes('sample');
-          const hasDND = lower.includes('stop') || lower.includes('remove') || lower.includes('dnd');
-          const hasHindi = lower.includes('namaste') || lower.includes('kya') || lower.includes('hai') || lower.includes('baare');
-
-          analytics = {
-            lead_name: lower.includes('vikram') ? 'Vikram Malhotra' : 'Valued Prospect',
-            contact_number: null,
-            configuration_preference: has2BHK && has3BHK ? 'Both / Undecided' : has2BHK ? '2 BHK' : has3BHK ? '3 BHK' : '2 BHK',
-            budget_fit: lower.includes('expensive') || lower.includes('high') ? 'Stretching' : 'Comfortable',
-            purchase_purpose: lower.includes('family') || lower.includes('rehne') ? 'Self-Use' : 'Investment',
-            timeline: '3-6 months',
-            interest_level: hasDND ? 'DND / Not Interested' : hasVisit ? 'High' : 'Medium',
-            site_visit_status: hasVisit ? 'Booked' : 'Interested (Tentative)',
-            site_visit_date: hasVisit ? 'Upcoming Weekend' : null,
-            site_visit_time: hasVisit ? '11:00 AM' : null,
-            cab_requested: lower.includes('cab'),
-            objections_raised: lower.includes('expensive') ? ['Pricing compared to Sector 79 micro-market'] : [],
-            objections_resolved: lower.includes('expensive') ? ['Aravalli greens & 30k clubhouse justified premium value'] : [],
-            language_detected: hasHindi ? 'Hinglish' : 'English',
-            follow_up_action: hasVisit ? 'Send WhatsApp brochure & Experience Centre location pin' : 'Follow up with pricing sheet',
-            escalation_required: lower.includes('senior') || lower.includes('escalat'),
-            escalation_reason: lower.includes('senior') ? 'Customer requested senior sales head discussion' : null,
-            conversation_summary: 'Customer interacted with Priya regarding Northstar One specifications, configurations, and pricing.',
-            voice_suitability_score: 97
-          };
-        }
->>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
       }
 
       res.json(analytics);
