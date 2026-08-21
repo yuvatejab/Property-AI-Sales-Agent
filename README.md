@@ -1,7 +1,3 @@
-# Northstar Homes — AI Sales & Lead Qualification Agent (Priya)
-
-> **Huvo AI | Forward Deployed Engineer Assignment**  
-> Fictional Real-Estate Conversational Sales Agent for **Northstar Homes** (*Project: Northstar One, Sector 79, Gurugram*).
 
 ---
 
