@@ -1,0 +1,6 @@
+{
+  "name": "Northstar Homes AI Sales Agent",
+  "description": "Conversational AI sales and qualification agent for Northstar Homes (Northstar One, Gurugram) supporting chat and voice, English/Hindi/Hinglish, objections, site booking, and CRM analytics.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
