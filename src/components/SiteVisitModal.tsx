@@ -81,6 +81,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
   };
 
   return (
+<<<<<<< HEAD
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
       <div className="bg-white border border-black/[0.06] w-full max-w-lg rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden text-[#1A1D20]">
         
@@ -93,13 +94,33 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
             <div>
               <h2 className="font-bold text-base text-[#111418] tracking-tight">Book Site Visit</h2>
               <p className="text-xs text-[#71767F] font-medium">Experience Centre • Sector 79, Gurugram</p>
+=======
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
+      <div className="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden text-slate-200">
+        
+        {/* Modal Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/50">
+          <div className="flex items-center space-x-2.5">
+            <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400">
+              <Calendar className="h-5 w-5" />
+            </div>
+            <div>
+              <h2 className="font-semibold text-base text-white">Book Site Visit</h2>
+              <p className="text-xs text-slate-400">Experience Centre • Sector 79, Gurugram</p>
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
             </div>
           </div>
           <button
             onClick={onClose}
+<<<<<<< HEAD
             className="p-2 rounded-full text-[#71767F] hover:text-[#111418] hover:bg-slate-200/50 transition cursor-pointer"
           >
             <X className="h-5 w-5" strokeWidth={2} />
+=======
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+          >
+            <X className="h-5 w-5" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
           </button>
         </div>
 
@@ -109,6 +130,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
             <div className="space-y-4">
               {bookingResult.status === 'confirmed' ? (
                 <div className="text-center py-4 space-y-3">
+<<<<<<< HEAD
                   <div className="inline-flex p-3.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 shadow-sm">
                     <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
                   </div>
@@ -139,6 +161,38 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                       </div>
                       <div className="pt-2 border-t border-slate-200/60 flex items-center gap-1.5 text-xs text-[#E55934] font-medium">
                         <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
+=======
+                  <div className="inline-flex p-3 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <CheckCircle2 className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">Site Visit Confirmed!</h3>
+                  <p className="text-xs text-slate-300 max-w-md mx-auto">{bookingResult.message}</p>
+                  
+                  {bookingResult.details && (
+                    <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left text-xs space-y-2 mt-4">
+                      <div className="flex justify-between border-b border-slate-800/80 pb-2">
+                        <span className="text-slate-400">Booking ID:</span>
+                        <span className="font-mono font-semibold text-amber-400">{bookingResult.details.bookingId}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Guest Name:</span>
+                        <span className="font-medium text-white">{bookingResult.details.customerName}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Date & Slot:</span>
+                        <span className="font-medium text-white">{bookingResult.details.date} at {bookingResult.details.time}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Configuration:</span>
+                        <span className="font-medium text-white">{bookingResult.details.configurationInterest}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Transportation:</span>
+                        <span className="font-medium text-emerald-400">{bookingResult.details.transportation}</span>
+                      </div>
+                      <div className="pt-2 border-t border-slate-800/80 flex items-center gap-1 text-[11px] text-amber-300">
+                        <Sparkles className="h-3.5 w-3.5" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                         <span>{bookingResult.details.whatsappPinStatus}</span>
                       </div>
                     </div>
@@ -147,13 +201,21 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                   <div className="pt-4 flex gap-3">
                     <button
                       onClick={() => setBookingResult(null)}
+<<<<<<< HEAD
                       className="w-1/2 py-2.5 px-4 rounded-full border border-black/[0.08] hover:bg-[#F7F8FA] text-xs font-bold transition cursor-pointer text-[#2B303A]"
+=======
+                      className="w-1/2 py-2.5 px-4 rounded-xl border border-slate-700 hover:bg-slate-800 text-xs font-medium transition"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     >
                       Book Another
                     </button>
                     <button
                       onClick={onClose}
+<<<<<<< HEAD
                       className="w-1/2 py-2.5 px-4 rounded-full bg-[#E55934] hover:bg-[#D94824] text-white font-bold text-xs transition shadow-[0_4px_14px_rgba(229,89,52,0.3)] cursor-pointer"
+=======
+                      className="w-1/2 py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs transition"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     >
                       Done
                     </button>
@@ -162,17 +224,29 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
               ) : (
                 /* Booking Failure State */
                 <div className="py-2 space-y-4">
+<<<<<<< HEAD
                   <div className="flex items-start space-x-3 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700">
                     <AlertTriangle className="h-5 w-5 text-rose-500 shrink-0 mt-0.5" strokeWidth={2} />
                     <div>
                       <h4 className="font-bold text-sm text-[#111418]">Slot Unavailable (Simulated Failure)</h4>
                       <p className="text-xs text-rose-700 mt-1">{bookingResult.message}</p>
+=======
+                  <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300">
+                    <AlertTriangle className="h-5 w-5 text-rose-400 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-sm text-white">Slot Unavailable (Simulated Failure)</h4>
+                      <p className="text-xs text-rose-200/90 mt-1">{bookingResult.message}</p>
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     </div>
                   </div>
 
                   {bookingResult.alternativeSlots && bookingResult.alternativeSlots.length > 0 && (
                     <div className="space-y-2">
+<<<<<<< HEAD
                       <p className="text-xs font-bold text-[#111418]">
+=======
+                      <p className="text-xs font-semibold text-slate-300">
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                         Priya's Recommended Alternate Slots:
                       </p>
                       <div className="grid grid-cols-1 gap-2">
@@ -181,10 +255,17 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                             key={i}
                             type="button"
                             onClick={() => handleSelectAlternativeSlot(slot)}
+<<<<<<< HEAD
                             className="flex items-center justify-between p-3.5 rounded-2xl bg-[#F7F8FA] border border-black/[0.04] hover:border-[#E55934]/40 hover:bg-[#FFF2EE] text-xs text-left transition group cursor-pointer"
                           >
                             <span className="font-bold text-[#2B303A] group-hover:text-[#E55934]">{slot}</span>
                             <span className="text-xs text-[#E55934] font-bold">Select Slot →</span>
+=======
+                            className="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-800/80 text-xs text-left transition group"
+                          >
+                            <span className="font-medium text-slate-200 group-hover:text-amber-400">{slot}</span>
+                            <span className="text-[11px] text-amber-400 font-medium">Select Slot →</span>
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                           </button>
                         ))}
                       </div>
@@ -195,7 +276,11 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setBookingResult(null)}
+<<<<<<< HEAD
                       className="w-full py-2.5 px-4 rounded-full border border-black/[0.08] hover:bg-[#F7F8FA] text-xs font-bold transition cursor-pointer text-[#2B303A]"
+=======
+                      className="w-full py-2.5 px-4 rounded-xl border border-slate-700 hover:bg-slate-800 text-xs font-medium transition"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     >
                       Edit Booking Details
                     </button>
@@ -210,59 +295,96 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                 
                 {/* Customer Name */}
                 <div>
+<<<<<<< HEAD
                   <label className="block text-xs font-bold text-[#71767F] mb-1.5 uppercase">
                     Customer Name *
                   </label>
                   <div className="relative">
                     <User className="h-4 w-4 absolute left-3.5 top-3 text-[#8E95A0]" strokeWidth={2} />
+=======
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Customer Name *
+                  </label>
+                  <div className="relative">
+                    <User className="h-4 w-4 absolute left-3 top-3 text-slate-400" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     <input
                       type="text"
                       required
                       placeholder="e.g. Vikram Malhotra"
                       value={formData.customerName}
                       onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
+<<<<<<< HEAD
                       className="w-full pl-10 pr-3.5 py-2.5 bg-[#F7F8FA] border border-black/[0.06] rounded-2xl text-xs text-[#111418] placeholder-[#8E95A0] focus:outline-none focus:border-[#E55934] focus:ring-1 focus:ring-[#E55934]"
+=======
+                      className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     />
                   </div>
                 </div>
 
                 {/* Phone Number */}
                 <div>
+<<<<<<< HEAD
                   <label className="block text-xs font-bold text-[#71767F] mb-1.5 uppercase">
                     Contact Number *
                   </label>
                   <div className="relative">
                     <Phone className="h-4 w-4 absolute left-3.5 top-3 text-[#8E95A0]" strokeWidth={2} />
+=======
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Contact Number *
+                  </label>
+                  <div className="relative">
+                    <Phone className="h-4 w-4 absolute left-3 top-3 text-slate-400" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     <input
                       type="tel"
                       required
                       placeholder="+91 98765 43210"
                       value={formData.contactNumber}
                       onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
+<<<<<<< HEAD
                       className="w-full pl-10 pr-3.5 py-2.5 bg-[#F7F8FA] border border-black/[0.06] rounded-2xl text-xs text-[#111418] placeholder-[#8E95A0] focus:outline-none focus:border-[#E55934] focus:ring-1 focus:ring-[#E55934]"
+=======
+                      className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     />
                   </div>
                 </div>
 
                 {/* Preferred Date */}
                 <div>
+<<<<<<< HEAD
                   <label className="block text-xs font-bold text-[#71767F] mb-1.5 uppercase">
                     Preferred Date *
                   </label>
                   <div className="relative">
                     <Calendar className="h-4 w-4 absolute left-3.5 top-3 text-[#8E95A0]" strokeWidth={2} />
+=======
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Preferred Date *
+                  </label>
+                  <div className="relative">
+                    <Calendar className="h-4 w-4 absolute left-3 top-3 text-slate-400" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     <input
                       type="date"
                       required
                       value={formData.preferredDate}
                       onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
+<<<<<<< HEAD
                       className="w-full pl-10 pr-3.5 py-2.5 bg-[#F7F8FA] border border-black/[0.06] rounded-2xl text-xs text-[#111418] focus:outline-none focus:border-[#E55934] focus:ring-1 focus:ring-[#E55934]"
+=======
+                      className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     />
                   </div>
                 </div>
 
                 {/* Preferred Time Slot */}
                 <div>
+<<<<<<< HEAD
                   <label className="block text-xs font-bold text-[#71767F] mb-1.5 uppercase">
                     Time Slot *
                   </label>
@@ -272,6 +394,17 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                       value={formData.preferredTime}
                       onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                       className="w-full pl-10 pr-3.5 py-2.5 bg-[#F7F8FA] border border-black/[0.06] rounded-2xl text-xs text-[#111418] focus:outline-none focus:border-[#E55934] focus:ring-1 focus:ring-[#E55934]"
+=======
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Time Slot *
+                  </label>
+                  <div className="relative">
+                    <Clock className="h-4 w-4 absolute left-3 top-3 text-slate-400" />
+                    <select
+                      value={formData.preferredTime}
+                      onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
+                      className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     >
                       <option value="10:30 AM">10:30 AM (Morning Slot)</option>
                       <option value="11:00 AM">11:00 AM (Prime Slot)</option>
@@ -286,19 +419,33 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
 
               {/* Configuration Preference */}
               <div>
+<<<<<<< HEAD
                 <label className="block text-xs font-bold text-[#71767F] mb-2 uppercase">
                   Interested Configuration
                 </label>
                 <div className="grid grid-cols-3 gap-2.5">
+=======
+                <label className="block text-xs font-medium text-slate-300 mb-1.5">
+                  Interested Configuration
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                   {(['2 BHK', '3 BHK', 'Both / Undecided'] as const).map((cfg) => (
                     <button
                       key={cfg}
                       type="button"
                       onClick={() => setFormData({ ...formData, configurationInterest: cfg })}
+<<<<<<< HEAD
                       className={`py-2.5 px-3 text-xs rounded-2xl border text-center transition font-bold cursor-pointer ${
                         formData.configurationInterest === cfg
                           ? 'bg-[#FFF2EE] border-[#E55934] text-[#E55934] shadow-[0_2px_8px_rgba(229,89,52,0.15)]'
                           : 'bg-[#F7F8FA] border-black/[0.04] text-[#71767F] hover:text-[#111418]'
+=======
+                      className={`py-2 px-2 text-xs rounded-xl border text-center transition font-medium ${
+                        formData.configurationInterest === cfg
+                          ? 'bg-amber-500/20 border-amber-500 text-amber-300'
+                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                       }`}
                     >
                       {cfg}
@@ -308,17 +455,28 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
               </div>
 
               {/* Complimentary Cab Pick-Up */}
+<<<<<<< HEAD
               <div className="p-4 bg-[#F7F8FA] rounded-2xl border border-black/[0.04] space-y-2.5">
                 <label className="flex items-center justify-between cursor-pointer">
                   <span className="text-xs font-bold text-[#111418] flex items-center gap-2">
                     <Car className="h-4 w-4 text-[#E55934]" strokeWidth={2} />
+=======
+              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800/90 space-y-2">
+                <label className="flex items-center justify-between cursor-pointer">
+                  <span className="text-xs font-medium text-slate-200 flex items-center gap-1.5">
+                    <Car className="h-4 w-4 text-amber-400" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                     Complimentary Chauffeur Cab Pick-up
                   </span>
                   <input
                     type="checkbox"
                     checked={formData.cabRequired}
                     onChange={(e) => setFormData({ ...formData, cabRequired: e.target.checked })}
+<<<<<<< HEAD
                     className="h-4 w-4 rounded border-slate-300 text-[#E55934] focus:ring-[#E55934] cursor-pointer"
+=======
+                    className="h-4 w-4 rounded border-slate-700 text-amber-500 focus:ring-amber-500 bg-slate-900"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                   />
                 </label>
 
@@ -328,22 +486,37 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                     placeholder="Pickup address / landmark"
                     value={formData.pickupAddress}
                     onChange={(e) => setFormData({ ...formData, pickupAddress: e.target.value })}
+<<<<<<< HEAD
                     className="w-full px-3.5 py-2 bg-white border border-black/[0.06] rounded-xl text-xs text-[#111418] placeholder-[#8E95A0] focus:outline-none focus:border-[#E55934]"
+=======
+                    className="w-full px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                   />
                 )}
               </div>
 
               {/* Simulate Failure Switch (For Evaluators & Reviewers) */}
+<<<<<<< HEAD
               <div className="p-3 bg-[#FFF2EE]/50 rounded-2xl border border-[#E55934]/20 flex items-center justify-between">
                 <div className="text-xs">
                   <span className="font-bold text-[#E55934] block">Simulate Booking Failure / Slot Conflict</span>
                   <span className="text-[#71767F] text-[11px]">Tests Priya's alternate slot recovery behaviour</span>
+=======
+              <div className="p-2.5 bg-amber-500/5 rounded-xl border border-amber-500/20 flex items-center justify-between">
+                <div className="text-[11px]">
+                  <span className="font-semibold text-amber-400 block">Simulate Booking Failure / Slot Conflict</span>
+                  <span className="text-slate-400">Tests Priya's alternate slot recovery behaviour</span>
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                 </div>
                 <input
                   type="checkbox"
                   checked={formData.forceFailure}
                   onChange={(e) => setFormData({ ...formData, forceFailure: e.target.checked })}
+<<<<<<< HEAD
                   className="h-4 w-4 rounded border-slate-300 text-[#E55934] focus:ring-[#E55934] cursor-pointer"
+=======
+                  className="h-4 w-4 rounded border-slate-700 text-amber-500 focus:ring-amber-500 bg-slate-900 cursor-pointer"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                 />
               </div>
 
@@ -352,18 +525,30 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
+<<<<<<< HEAD
                   className="w-1/3 py-2.5 px-4 rounded-full border border-black/[0.08] hover:bg-[#F7F8FA] text-xs font-bold text-[#71767F] transition cursor-pointer"
+=======
+                  className="w-1/3 py-2.5 px-4 rounded-xl border border-slate-700 hover:bg-slate-800 text-xs font-medium text-slate-300 transition"
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
+<<<<<<< HEAD
                   className="w-2/3 py-2.5 px-4 rounded-full bg-[#E55934] hover:bg-[#D94824] disabled:opacity-50 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(229,89,52,0.3)] cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
                 >
                   {loading ? (
                     <>
                       <RefreshCw className="h-4 w-4 animate-spin" strokeWidth={2} />
+=======
+                  className="w-2/3 py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-slate-950 font-semibold text-xs transition flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <RefreshCw className="h-4 w-4 animate-spin" />
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
                       <span>Checking Availability...</span>
                     </>
                   ) : (
@@ -380,4 +565,7 @@ export const SiteVisitModal: React.FC<SiteVisitModalProps> = ({
     </div>
   );
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> f751cc538a70b5126df38632e0784e5d49935b03
